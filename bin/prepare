@@ -15,6 +15,7 @@ libncurses5-dev
 libxml2-dev
 libxslt1-dev
 ruby1.9.3
+unzip
 wget
 zlib1g-dev
 EOT
