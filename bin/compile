@@ -19,8 +19,6 @@ build_dir="$1"
 cache_dir="$2"
 ccache_max_size=50G
 bundle=$HOME/.gem/ruby/1.9.1/bin/bundle
-# XXX
-project=chef
 
 export CCACHE_DIR=$cache_dir/ccache
 export CC='ccache gcc'
@@ -48,9 +46,16 @@ build_dir "$build_dir/out/build"
 package_dir "$build_dir/out/pkg"
 EOT
 
-echo "-----> Running omnibus build"
-cd $build_dir >/dev/null 2>&1
-bin/omnibus build project $project
-cd $build_dir >/dev/null 2>&1
+for project in $build_dir/config/projects/*.rb
+do
+  project=$(basename $project .rb)
+  case $project in
+    *-windows) continue;;
+  esac
+  echo "-----> Building omnibus project: $project"
+  cd $build_dir >/dev/null 2>&1
+  bin/omnibus build project $project
+  cd $build_dir >/dev/null 2>&1
+done
 
 cd - >/dev/null 2>&1
