@@ -11,6 +11,7 @@ cat <<EOT
 build-essential
 ccache
 dpkg-dev
+libncurses5-dev
 ruby1.9.3
 wget
 EOT
