@@ -20,7 +20,7 @@ cache_dir="$2"
 ccache_max_size=50G
 bundle=$HOME/.gem/ruby/1.9.1/bin/bundle
 # XXX
-projet=chef
+project=chef
 
 export CCACHE_DIR=$cache_dir/ccache
 export CC='ccache gcc'
