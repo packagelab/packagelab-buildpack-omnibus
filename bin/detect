@@ -13,7 +13,7 @@ esac
 
 build_dir="$1"
 
-if [ -f $build_dir/config/projects ]
+if [ -d $build_dir/config/projects ]
 then
   echo "Omnibus"
   exit 0
