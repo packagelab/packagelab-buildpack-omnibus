@@ -12,6 +12,8 @@ build-essential
 ccache
 dpkg-dev
 libncurses5-dev
+libxml2-dev
+libxslt1-dev
 ruby1.9.3
 wget
 zlib1g-dev
