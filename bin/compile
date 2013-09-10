@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# fail fast
+set -o errexit
+set -o nounset
+set -o pipefail
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+scriptname=$(basename $0)
+case $# in
+  2) :;;
+  *) echo "$scriptname: usage: $scriptname BUILD_DIR CACHE_DIR" >&2; exit 2;;
+esac
+
+build_dir="$1"
+cache_dir="$2"
+ccache_max_size=50G
+bundle=$HOME/.gem/ruby/1.9.1/bin/bundle
+# XXX
+projet=chef
+
+export CCACHE_DIR=$cache_dir/ccache
+export CC='ccache gcc'
+export CXX='ccache g++'
+export CC_host="$CC"
+export CXX_host="$CXX"
+
+ccache -M $ccache_max_size
+ccache -z
+
+echo "-----> Installing bundler"
+gem install bundler --no-rdoc --no-ri --user-install
+
+echo "-----> Installing gems"
+cd $build_dir >/dev/null 2>&1
+$bundle install --path=vendor/bundle --binstubs
+cd - >/dev/null 2>&1
+
+echo "-----> Creating omnibus.rb config file"
+cat <<EOT >$build_dir/omnibus.rb
+use_s3_caching false
+cache_dir "$cache_dir/omnibus"
+source_dir "$build_dir/out/source"
+build_dir "$build_dir/out/build"
+package_dir "$build_dir/out/pkg"
+EOT
+
+echo "-----> Running omnibus build"
+cd $build_dir >/dev/null 2>&1
+bin/omnibus build project $project
+cd $build_dir >/dev/null 2>&1
+
+cd - >/dev/null 2>&1

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# fail fast
+set -o errexit
+set -o nounset
+set -o pipefail
+
+scriptname=$(basename $0)
+
+cat <<EOT
+build-essential
+ccache
+dpkg-dev
+ruby1.9.3
+wget
+EOT

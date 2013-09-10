@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# fail fast
+set -o errexit
+set -o nounset
+set -o pipefail
+
+echo "---"
+echo "artifacts:"
+for pkg in out/pkg/*.deb
+do
+  echo "   - $pkg"
+done
