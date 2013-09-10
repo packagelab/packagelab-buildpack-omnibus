@@ -14,4 +14,5 @@ dpkg-dev
 libncurses5-dev
 ruby1.9.3
 wget
+zlib1g-dev
 EOT
