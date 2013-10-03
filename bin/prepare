@@ -7,7 +7,32 @@ set -o pipefail
 
 scriptname=$(basename $0)
 
-cat <<EOT
+if [ -f /etc/centos-release ]
+then
+  cat <<EOT
+autoconf
+automake
+bison
+byacc
+elfutils
+flex
+gcc
+gcc-c++
+gettext
+libtool
+make
+patch
+patchutils
+pkgconfig
+redhat-rpm-config
+rpm-build
+tar
+unzip
+wget
+EOT
+elif [ -f /etc/debian_version ]
+then
+  cat <<EOT
 build-essential
 ccache
 dpkg-dev
@@ -19,3 +44,4 @@ unzip
 wget
 zlib1g-dev
 EOT
+fi
