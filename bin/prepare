@@ -26,6 +26,7 @@ patchutils
 pkgconfig
 redhat-rpm-config
 rpm-build
+ruby19
 tar
 unzip
 wget
