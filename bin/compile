@@ -35,7 +35,7 @@ ccache -M $ccache_max_size
 ccache -z
 
 echo "-----> Installing bundler"
-$gem install bundler --no-rdoc --no-ri --user-install
+$gem install bundler --no-rdoc --no-ri --user-install 2>&1 | indent
 if [ -f $HOME/.gem/ruby/1.9.1/bin/bundle ]
 then
   bundle=$HOME/.gem/ruby/1.9.1/bin/bundle
@@ -45,7 +45,7 @@ fi
 
 echo "-----> Installing gems"
 cd $build_dir >/dev/null 2>&1
-$bundle install --path=vendor/bundle --binstubs
+$bundle install --path=vendor/bundle --binstubs 2>&1 | indent
 cd - >/dev/null 2>&1
 
 echo "-----> Creating omnibus.rb config file"
@@ -65,7 +65,7 @@ do
   esac
   echo "-----> Building omnibus project: $project"
   cd $build_dir >/dev/null 2>&1
-  bin/omnibus build project $project
+  bin/omnibus build project $project 2>&1 | indent
   cd $build_dir >/dev/null 2>&1
 done
 
