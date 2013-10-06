@@ -30,6 +30,7 @@ ruby19-devel
 tar
 unzip
 wget
+zlib-devel
 EOT
 elif [ -f /etc/debian_version ]
 then
