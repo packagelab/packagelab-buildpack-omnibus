@@ -19,6 +19,7 @@ flex
 gcc
 gcc-c++
 gettext
+imake
 libtool
 make
 patch
