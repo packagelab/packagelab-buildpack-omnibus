@@ -45,6 +45,7 @@ libxslt1-dev
 ruby1.9.3
 unzip
 wget
+xutils-dev
 zlib1g-dev
 EOT
 fi
