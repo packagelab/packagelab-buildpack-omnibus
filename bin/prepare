@@ -43,6 +43,7 @@ libncurses5-dev
 libxml2-dev
 libxslt1-dev
 ruby1.9.3
+ruby1.9.1-dev
 unzip
 wget
 xutils-dev
