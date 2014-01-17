@@ -42,6 +42,7 @@ dpkg-dev
 libncurses5-dev
 libxml2-dev
 libxslt1-dev
+pkg-config
 ruby1.9.3
 ruby1.9.1-dev
 unzip
