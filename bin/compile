@@ -75,6 +75,16 @@ do
   sed -i.bak 's,"ftp://xmlsoft.org/libxml2/,"http://www.xmlsoft.org/sources/,' $path
 done
 
+# XXX: out-of-date cacert.pem checksum
+echo "-----> Fixing recipes with out-of-date cacert.pem checksum"
+for path in $(find $build_dir -path '*/config/software/cacerts.rb')
+do
+  sed -i.bak \
+    -e 's,"2014.01.06","2014.01.28",' \
+    -e "s,'6253bb1b6696a190fdf7a2062003b21c','5d108f8ab86afacc6663aafca8604dd3'," \
+    $path
+done
+
 echo "-----> Creating omnibus.rb config file"
 cat <<EOT >$build_dir/omnibus.rb
 use_s3_caching false
