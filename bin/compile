@@ -48,6 +48,33 @@ cd $build_dir >/dev/null 2>&1
 $bundle install --path=vendor/bundle --binstubs 2>&1 | indent
 cd - >/dev/null 2>&1
 
+# XXX: https://github.com/opscode/omnibus-software/pull/117
+echo "-----> Fixing recipes to add PKG_CONFIG_PATH"
+for path in $(find $build_dir -path '*/config/software/ruby.rb')
+do
+  sed -i.bak 's:\("LDFLAGS" => "-Wl,.*"$\):\1,\
+      "PKG_CONFIG_PATH" => "#{install_dir}/embedded/lib/pkgconfig":' $path
+done
+
+# XXX: https://github.com/opscode/omnibus-software/pull/118
+echo "-----> Fixing recipes to change ftp:// to http://"
+for path in $(find $build_dir -path '*/config/software/libpng.rb')
+do
+  sed -i.bak 's,"ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng15/,"http://downloads.sourceforge.net/project/libpng/libpng15/#{version}/,' $path
+done
+for path in $(find $build_dir -path '*/config/software/libwrap.rb')
+do
+  sed -i.bak 's,"ftp://ftp.porcupine.org/,"http://ftp.porcupine.org/,' $path
+done
+for path in $(find $build_dir -path '*/config/software/libxml2.rb')
+do
+  sed -i.bak 's,"ftp://xmlsoft.org/libxml2/,"http://www.xmlsoft.org/sources/,' $path
+done
+for path in $(find $build_dir -path '*/config/software/libxslt.rb')
+do
+  sed -i.bak 's,"ftp://xmlsoft.org/libxml2/,"http://www.xmlsoft.org/sources/,' $path
+done
+
 echo "-----> Creating omnibus.rb config file"
 cat <<EOT >$build_dir/omnibus.rb
 use_s3_caching false
