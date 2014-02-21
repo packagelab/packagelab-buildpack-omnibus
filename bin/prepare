@@ -10,44 +10,47 @@ scriptname=$(basename $0)
 if [ -f /etc/centos-release ]
 then
   cat <<EOT
-autoconf
-automake
-bison
-byacc
-elfutils
-flex
-gcc
-gcc-c++
-gettext
-imake
-libtool
-make
-patch
-patchutils
-pkgconfig
-redhat-rpm-config
-rpm-build
-ruby19-devel
-tar
-unzip
-wget
-zlib-devel
+---
+packages:
+  - autoconf
+  - automake
+  - bison
+  - byacc
+  - elfutils
+  - flex
+  - gcc
+  - gcc-c++
+  - gettext
+  - imake
+  - libtool
+  - make
+  - patch
+  - patchutils
+  - pkgconfig
+  - redhat-rpm-config
+  - rpm-build
+  - ruby19-devel
+  - tar
+  - unzip
+  - wget
+  - zlib-devel
 EOT
 elif [ -f /etc/debian_version ]
 then
   cat <<EOT
-build-essential
-ccache
-dpkg-dev
-libncurses5-dev
-libxml2-dev
-libxslt1-dev
-pkg-config
-ruby1.9.3
-ruby1.9.1-dev
-unzip
-wget
-xutils-dev
-zlib1g-dev
+packages:
+  - build-essential
+  - ccache
+  - dpkg-dev
+  - libncurses5-dev
+  - libxml2-dev
+  - libxslt1-dev
+  - pkg-config
+  - ruby1.9.3
+  - ruby1.9.1-dev
+  - unzip
+  - wget
+  - xutils-dev
+  - zlib1g-dev
 EOT
 fi
