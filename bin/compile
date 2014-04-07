@@ -95,6 +95,11 @@ build_dir "$build_dir/out/build"
 package_dir "$build_dir/out/pkg"
 EOT
 
+# Needed for Omnibus 3.0.0 and higher
+echo "-----> Setting up .gitconfig"
+git config --global user.email 'builder@packagelab.com'
+git config --global user.name 'Package Lab'
+
 for project in $build_dir/config/projects/*.rb
 do
   project=$(basename $project .rb)
