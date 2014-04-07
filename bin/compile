@@ -74,6 +74,11 @@ for path in $(find $build_dir -path '*/config/software/libxslt.rb')
 do
   sed -i.bak 's,"ftp://xmlsoft.org/libxml2/,"http://www.xmlsoft.org/sources/,' $path
 done
+for path in $(find $build_dir -path '*/config/software/libffi.rb')
+do
+  sed -i.bak 's,"ftp://sourceware.org/pub/,"http://mirrors.kernel.org/sourceware/,' $path
+done
+
 
 # XXX: out-of-date cacert.pem checksum
 echo "-----> Fixing recipes with out-of-date cacert.pem checksum"
