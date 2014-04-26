@@ -7,7 +7,7 @@ set -o pipefail
 
 scriptname=$(basename $0)
 
-if [ -f /etc/redhat-release ]
+if [ -f /etc/centos-release ]
 then
   cat <<EOT
 ---
@@ -30,6 +30,34 @@ packages:
   - redhat-rpm-config
   - rpm-build
   - ruby19-devel
+  - tar
+  - unzip
+  - wget
+  - zlib-devel
+EOT
+elif [ -f /etc/fedora-release ]
+then
+  cat <<EOT
+---
+packages:
+  - autoconf
+  - automake
+  - bison
+  - byacc
+  - elfutils
+  - flex
+  - gcc
+  - gcc-c++
+  - gettext
+  - imake
+  - libtool
+  - make
+  - patch
+  - patchutils
+  - pkgconfig
+  - redhat-rpm-config
+  - rpm-build
+  - ruby-devel
   - tar
   - unzip
   - wget
