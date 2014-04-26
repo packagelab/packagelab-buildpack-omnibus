@@ -7,7 +7,7 @@ set -o pipefail
 
 scriptname=$(basename $0)
 
-if [ -f /etc/centos-release ]
+if [ -f /etc/redhat-release ]
 then
   cat <<EOT
 ---
