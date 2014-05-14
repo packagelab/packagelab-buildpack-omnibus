@@ -84,11 +84,21 @@ for path in $(find $build_dir -path '*/config/software/jre.rb')
 do
   if grep -q 'jre-7u3' $path
   then
-    echo "-----> Fixing bad jre-7u3 by upgrading to jre-7u55"
+    echo "-----> Fixing bad jre version: 7u3 -> 7u55"
     cd $(dirname $path) >/dev/null 2>&1
     curl -fsLS https://github.com/opscode/omnibus-software/pull/191.patch | patch -p3
     cd - >/dev/null 2>&1
   fi
+done
+
+# XXX: out-of-date sqitch version has been deleted from CPAN
+for path in $(find $build_dir -path '*/config/software/sqitch.rb')
+do
+  echo "-----> Fixing bad sqitch version: 0.973 -> 0.992"
+  sed -i.bak \
+    -e 's,"0.973","0.992",' \
+    -e 's,"0994e9f906a7a4a2e97049c8dbaef584","a0053152a8cbf4aa09990b750974c288",' \
+    $path
 done
 
 # XXX: out-of-date cacert.pem checksum
