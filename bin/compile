@@ -79,6 +79,17 @@ do
   sed -i.bak 's,"ftp://sourceware.org/pub/,"http://mirrors.kernel.org/sourceware/,' $path
 done
 
+# XXX: https://github.com/opscode/omnibus-software/pull/191
+for path in $(find $build_dir -path '*/config/software/jre.rb')
+do
+  if grep -q 'jre-7u3' $path
+  then
+    echo "-----> Fixing bad jre-7u3 by upgrading to jre-7u55"
+    cd $(dirname $path) >/dev/null 2>&1
+    curl -fsLS https://github.com/opscode/omnibus-software/pull/191.patch | patch -p3
+    cd - >/dev/null 2>&1
+  fi
+done
 
 # XXX: out-of-date cacert.pem checksum
 echo "-----> Fixing recipes with out-of-date cacert.pem checksum"
