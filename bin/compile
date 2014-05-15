@@ -101,6 +101,21 @@ do
     $path
 done
 
+# XXX
+for path in $(find $build_dir -path '*/config/software/curl.rb')
+do
+  if grep -q "7.36.0" $path
+  then
+    if ! grep -q -- '--disable-manual' $path
+    then
+      echo "-----> Fixing bad curl version: 7.36.0 (hugehelp)"
+      cd $(dirname $path) >/dev/null 2>&1
+      curl -fsLS https://github.com/opscode/omnibus-software/commit/4e3f41df63.patch | patch -p3
+      cd - >/dev/null 2>&1
+    fi
+  fi
+done
+
 # XXX: out-of-date cacert.pem checksum
 echo "-----> Fixing recipes with out-of-date cacert.pem checksum"
 for path in $(find $build_dir -path '*/config/software/cacerts.rb')
