@@ -124,6 +124,7 @@ do
     -e 's,"2014.01.06","2014.01.28",' \
     -e "s,'6253bb1b6696a190fdf7a2062003b21c','9f92a0d9f605e227ae068e605f4c86fa'," \
     -e "s,'5d108f8ab86afacc6663aafca8604dd3','9f92a0d9f605e227ae068e605f4c86fa'," \
+    -e "s,'c9f4f7f4d6a5ef6633e893577a09865e','d7f7dd7e3ede3e323fc0e09381f16caf'," \
     $path
 done
 
