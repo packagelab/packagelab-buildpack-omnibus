@@ -131,7 +131,7 @@ echo "-----> Creating omnibus.rb config file"
 cat <<EOT >$build_dir/omnibus.rb
 use_s3_caching false
 cache_dir "$cache_dir/omnibus/cache"
-install_path_cache_dir "$cache_dir/omnibus/cache/install_path"
+git_cache_dir "$cache_dir/omnibus/cache/git_cache"
 source_dir "$cache_dir/omnibus/src"
 build_dir "$build_dir/out/build"
 package_dir "$build_dir/out/pkg"
