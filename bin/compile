@@ -80,16 +80,16 @@ do
 done
 
 # XXX: https://github.com/opscode/omnibus-software/pull/191
-for path in $(find $build_dir -path '*/config/software/jre.rb')
-do
-  if grep -q 'jre-7u3' $path
-  then
-    echo "-----> Fixing bad jre version: 7u3 -> 7u55"
-    cd $(dirname $path) >/dev/null 2>&1
-    curl -fsLS https://github.com/opscode/omnibus-software/pull/191.patch | patch -p3
-    cd - >/dev/null 2>&1
-  fi
-done
+#for path in $(find $build_dir -path '*/config/software/jre.rb')
+#do
+#  if grep -q 'jre-7u3' $path
+#  then
+#    echo "-----> Fixing bad jre version: 7u3 -> 7u55"
+#    cd $(dirname $path) >/dev/null 2>&1
+#    curl -fsLS https://github.com/opscode/omnibus-software/pull/191.patch | patch -p3
+#    cd - >/dev/null 2>&1
+#  fi
+#done
 
 # XXX: out-of-date sqitch version has been deleted from CPAN
 for path in $(find $build_dir -path '*/config/software/sqitch.rb')
