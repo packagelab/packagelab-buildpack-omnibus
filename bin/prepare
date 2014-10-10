@@ -16,6 +16,7 @@ packages:
   - automake
   - bison
   - byacc
+  - cmake
   - elfutils
   - flex
   - gcc
@@ -45,6 +46,7 @@ packages:
   - automake
   - bison
   - byacc
+  - cmake
   - elfutils
   - flex
   - gcc
@@ -71,6 +73,7 @@ then
 packages:
   - build-essential
   - ccache
+  - cmake
   - dpkg-dev
   - libncurses5-dev
   - libxml2-dev
