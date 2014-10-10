@@ -29,6 +29,7 @@ packages:
   - pkgconfig
   - redhat-rpm-config
   - rpm-build
+  - rsync
   - ruby19-devel
   - tar
   - unzip
@@ -57,6 +58,7 @@ packages:
   - pkgconfig
   - redhat-rpm-config
   - rpm-build
+  - rsync
   - ruby-devel
   - tar
   - unzip
@@ -76,6 +78,7 @@ packages:
   - pkg-config
   - ruby1.9.3
   - ruby1.9.1-dev
+  - rsync
   - unzip
   - wget
   - xutils-dev
