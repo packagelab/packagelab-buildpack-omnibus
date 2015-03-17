@@ -31,7 +31,7 @@ packages:
   - redhat-rpm-config
   - rpm-build
   - rsync
-  - ruby19-devel
+  - ruby-devel
   - tar
   - unzip
   - wget
